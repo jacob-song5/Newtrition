@@ -50,6 +50,14 @@
             android:hint="Weight in Pounds"
             android:inputType="number" />
 
+        <EditText
+            android:id="@+id/ageEntry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Age"
+            android:inputType="number" />
+
         <RadioGroup
             android:id="@+id/gender_group"
             android:layout_width="match_parent"
@@ -82,6 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Level of Exercise"
+            android:gravity="center"
             android:textSize="30sp" />
 
         <RadioGroup
@@ -119,7 +128,7 @@
         <Button
             android:id="@+id/calculate_button"
             android:layout_width="match_parent"
-            android:layout_height="188dp"
+            android:layout_height="139dp"
             android:text="Calculate" />
 
     </LinearLayout>

@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    //Handler for when an item in the options menu is selected. Use if's to split up actions for each button
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
