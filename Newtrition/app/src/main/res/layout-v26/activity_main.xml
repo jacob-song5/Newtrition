@@ -18,7 +18,7 @@
         android:layout_marginTop="63dp"
         android:text="Home Page"
         android:textColor="#ffffff"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <Button
@@ -27,9 +27,20 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="189dp"
-        android:background="#00ffffff"
+        android:layout_marginTop="141dp"
         android:text="@string/profile"
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/suggestion_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/input_button"
+        android:layout_alignStart="@+id/profile_button"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="95dp"
+        android:text="Suggestion"
         android:textColor="#ffffff"
         android:textStyle="bold" />
 
@@ -37,25 +48,11 @@
         android:id="@+id/input_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/profile_button"
         android:layout_alignStart="@+id/profile_button"
-        android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
-        android:layout_marginBottom="405dp"
-        android:background="#00ffffff"
+        android:layout_marginTop="91dp"
         android:text="Input food"
-        android:textColor="#ffffff"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/calendar_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/profile_button"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginBottom="305dp"
-        android:background="#00ffffff"
-        android:text="Calendar"
         android:textColor="#ffffff"
         android:textStyle="bold" />
 

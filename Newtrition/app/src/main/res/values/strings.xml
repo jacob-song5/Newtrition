@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Newtrition</string>
     <string name="title_activity_profile">ProfileActivity</string>
+    <string name="profile">Profile</string>
+    <string name="profile_screen">Profile Screen</string>
+    <string name="input_food">Input food</string>
 </resources>
