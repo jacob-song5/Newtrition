@@ -129,6 +129,7 @@
             android:id="@+id/calculate_button"
             android:layout_width="match_parent"
             android:layout_height="139dp"
+            android:onClick="save_profile"
             android:text="Calculate" />
 
     </LinearLayout>
