@@ -1,13 +1,26 @@
 package com.example.newtrition;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.*;
+
+import java.io.File;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        profile_button = (Button) findViewById(R.id.profile_button);
+        profile_button = findViewById(R.id.profile_button);
         profile_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -28,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 }
         });
 
-        input_button = (Button) findViewById(R.id.input_button);
+        input_button = findViewById(R.id.input_button);
         input_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,13 +49,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        suggestion_button = (Button) findViewById(R.id.suggestion_button);
+        suggestion_button = findViewById(R.id.suggestion_button);
         suggestion_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openSuggest();
             }
         });
+
+        //Code for starting the prompt to enter the user's weight.
+        //Uses weight_prompt.xml to get layout and AlertDialog builder to create the prompt.
+        //Opens every time the app is opened, not every time the app goes to MainActivity
+        LayoutInflater layout_inflater = LayoutInflater.from(this);
+        View promptUserView = layout_inflater.inflate(R.layout.weight_prompt, null);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(promptUserView);
+        final EditText weight_today = promptUserView.findViewById(R.id.daily_weight_prompt);
+        builder.setTitle("What is your current weight today?");
+
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                save_to_file(weight_today.getText().toString());
+            }
+        });
+
+        builder.show();
     }
 
     public void openProfile() {
@@ -59,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SuggestActivity.class);
         startActivity(intent);
     }
+
     //Handler for when an item in the options menu is selected. Use if's to split up actions for each button
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
@@ -78,5 +112,35 @@ public class MainActivity extends AppCompatActivity {
     {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
+    }
+
+    //function used by AlertDialog "Ok" button for saving the data given
+    //will not change data if there was no input or profile_data doesn't exist
+    private void save_to_file(String weight)
+    {
+        if (weight != "") {
+            try {
+                File f = new File(getFilesDir(), "profile_data");
+                Scanner in = new Scanner(f);
+                String height, age, gender, exercise_level;
+                height = in.nextLine();
+                in.nextLine();
+                age = in.nextLine();
+                gender = in.nextLine();
+                exercise_level = in.nextLine();
+                in.close();
+
+                PrintWriter out = new PrintWriter(f);
+                out.println(height);
+                out.println(weight);
+                out.println(age);
+                out.println(gender);
+                out.println(exercise_level);
+                out.close();
+            } catch (NoSuchElementException n) {
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
