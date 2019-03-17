@@ -11,10 +11,10 @@ public class FoodDatabase {
     //THEN parse database to extract data info
     //manually input foods for demo purposes
     public FoodDatabase(){
-        FoodItem chicken_sandwich = new FoodItem("Chicken Sandwich", 466.0, 39.06, 6.81, 20.93, 30.44);
-        FoodItem cheese_pizza_slice = new FoodItem("Cheese Pizza Slice", 278.0, 35.90, 4.34, 9.69, 11.66);
-        FoodItem cheeseburger = new FoodItem("Cheeseburger", 343.0, 32.33, 6.65, 16.38, 17.13);
-        FoodItem onion_rings = new FoodItem("Onion Rings", 481.0, 50.99, 6.35, 29.52, 4.52);
+        FoodItem chicken_sandwich = new FoodItem("CHICKEN SANDWICH", 466.0, 39.06, 6.81, 20.93, 30.44);
+        FoodItem cheese_pizza_slice = new FoodItem("CHEESE PIZZA SLICE", 278.0, 35.90, 4.34, 9.69, 11.66);
+        FoodItem cheeseburger = new FoodItem("CHEESEBURGER", 343.0, 32.33, 6.65, 16.38, 17.13);
+        FoodItem onion_rings = new FoodItem("ONION RINGS", 481.0, 50.99, 6.35, 29.52, 4.52);
         fdb.add(chicken_sandwich);
         fdb.add(cheese_pizza_slice);
         fdb.add(cheeseburger);
@@ -27,7 +27,7 @@ public class FoodDatabase {
                 return fdb.get(i);
             }
         }
-        FoodItem not_found = new FoodItem("Food item not found", 0.0, 0.0, 0.0, 0.0, 0.0);
+        FoodItem not_found = new FoodItem("FOOD ITEM NOT FOUND", 0.0, 0.0, 0.0, 0.0, 0.0);
         return not_found;
     }
 

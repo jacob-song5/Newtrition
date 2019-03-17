@@ -34,6 +34,9 @@ public class InputActivity extends AppCompatActivity {
     //load database of nutritonal data
     FoodDatabase fd = new FoodDatabase();
 
+    //live output of most recent nutritional data from model
+    public static String total_data_text = new String();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,10 +46,10 @@ public class InputActivity extends AppCompatActivity {
     //loads food data into page
     public void fetch_food(View view){
         EditText food_name_entry = this.findViewById(R.id.input_food_te);
-        temp_food_name = food_name_entry.getText().toString();
+        temp_food_name = food_name_entry.getText().toString().toUpperCase();
 
         FoodItem temp_food_item = fd.getFoodInfo(temp_food_name);
-        if(temp_food_item.getName().equals("Food item not found")){
+        if(temp_food_item.getName().equals("FOOD ITEM NOT FOUND")){
             food_name_entry.setText("Food item not found");
         }
         else{
@@ -88,9 +91,11 @@ public class InputActivity extends AppCompatActivity {
         total_protein += temp_protein;
 
         //Use this string to display and update live nutrition values
-        String temp_output_text = "Current cal: " + total_calories + ", carb:" + total_carbs +
+        //You need to .setText(total_data_text) the textView or whatever we use
+        //here to where ever you want to display it to keep it updated
+        total_data_text = "Current cal: " + total_calories + ", carb:" + total_carbs +
                 ", sugar: " + total_sugar + ", lipids: " + total_lipids + ", protein: " + total_protein;
-        System.out.println(temp_output_text);
+        System.out.println(total_data_text);
 
         System.out.println("TOTAL CAL: " + total_calories);
         System.out.println("TOTAL CARBS: " + total_carbs);
