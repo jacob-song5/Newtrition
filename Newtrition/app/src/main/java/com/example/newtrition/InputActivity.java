@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 public class InputActivity extends AppCompatActivity {
 
     //Allow user to search database to quickly add foods
@@ -96,12 +98,26 @@ public class InputActivity extends AppCompatActivity {
         total_data_text = "Current cal: " + total_calories + ", carb:" + total_carbs +
                 ", sugar: " + total_sugar + ", lipids: " + total_lipids + ", protein: " + total_protein;
         System.out.println(total_data_text);
+        //Put this format of code in whatever page the current data is displayed
+        //TextView current_data_text = (TextView)(this.findViewById(R.id.cur_data_tv));
+        //current_data_text.setText(total_data_text);
 
         System.out.println("TOTAL CAL: " + total_calories);
         System.out.println("TOTAL CARBS: " + total_carbs);
         System.out.println("TOTAL SUGAR: " + total_sugar);
         System.out.println("TOTAL FATS: " + total_lipids);
         System.out.println("TOTAL PROTEIN: " + total_protein);
+
+        String emptyString = "";
+
+        //reset fields to empty
+        EditText food_name_entry = this.findViewById(R.id.input_food_te);
+        food_name_entry.setText(emptyString);
+        calories_entry.setText(emptyString);
+        carbs_entry.setText(emptyString);
+        sugar_entry.setText(emptyString);
+        fats_entry.setText(emptyString);
+        protein_entry.setText(emptyString);
     }
 
 }
