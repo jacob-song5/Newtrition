@@ -4,5 +4,4 @@
     <string name="profile">Profile</string>
     <string name="profile_screen">Profile Screen</string>
     <string name="input_food">Input food</string>
-    <string name="daily_weight_prompt">(in pounds)</string>
 </resources>
