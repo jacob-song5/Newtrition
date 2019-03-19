@@ -43,6 +43,14 @@ public class FoodDatabase {
         return not_found;
     }
 
+    public int size_of_data(){
+        return fdb.size();
+    }
+
+    public FoodItem get_food(int x){
+        return fdb.get(x);
+    }
+
     //used to add foods to database
     //return -1 if failed to add (already exists), returns index of item in list if success
     //not needed anymore but keeping for utility
