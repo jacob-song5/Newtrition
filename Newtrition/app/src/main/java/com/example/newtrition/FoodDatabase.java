@@ -20,7 +20,7 @@ public class FoodDatabase {
         FoodItem soft_taco = new FoodItem("SOFT TACO", 210.0, 20.63, 1.60, 9.95, 9.44);
         FoodItem vanilla_ice_cream = new FoodItem("VANILLA ICE CREAM", 196.0, 31.63, 23.39, 5.83, 5.09);
         FoodItem chicken_nuggets = new FoodItem("CHICKEN NUGGETS", 222.0, 9.73, 0.05, 15.33, 11.19);
-        FoodItem hotcakes = new FoodItem("HOTCOKES", 601.0, 101.84, 45.48, 17.81, 8.95);
+        FoodItem hotcakes = new FoodItem("HOTCAKES", 601.0, 101.84, 45.48, 17.81, 8.95);
         fdb.add(chicken_sandwich);
         fdb.add(cheese_pizza_slice);
         fdb.add(cheeseburger);
@@ -57,6 +57,16 @@ public class FoodDatabase {
         fdb.add(new FoodItem(f_name, f_cal, f_carb, f_sugar, f_fats, f_protein));
         status = i;
         return status;
+    }
+
+    public int size_of_data()
+    {
+    	return fdb.size();
+    }
+
+    public FoodItem get_food(int x)
+    {
+    	return fdb.get(x);
     }
 
 }
