@@ -29,6 +29,7 @@ public class SuggestActivity extends AppCompatActivity {
     public void suggest(View view)
     {
         // no prefix = total amount needed daily........ c = current consumption for the day........  n = needed to get to recomended daily....... p = percentage of daily met already (for weighting purposes)
+        int c_height, c_weight, c_age, c_gender, c_exercise;
         int calories, sugar, fat, carb, pro;
         double p_calories, p_sugar, p_fat, p_carb, p_pro,c_calories, c_sugar, c_fat, c_carb, c_pro, n_calories, n_sugar, n_fat, n_carb, n_pro;
         int count = 0;
@@ -60,20 +61,58 @@ public class SuggestActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        calories = Integer.parseInt(current[0]);
-        sugar = Integer.parseInt(current[1]);
-        fat = Integer.parseInt(current[2]);
-        carb = Integer.parseInt(current[3]);
-        pro = Integer.parseInt(current[4]);
+        //load saved health status
+        c_height = Integer.parseInt(current[0]);
+        c_weight = Integer.parseInt(current[1]);
+        c_age = Integer.parseInt(current[2]);
+        c_gender = Integer.parseInt(current[3]);
+        c_exercise = Integer.parseInt(current[4]);
+
+        System.out.println("[0]: "+c_height+", [1]: "+c_weight+", [2]: "+c_age+", [3]: "+c_gender+", [4]: "+c_exercise);
+
+        //calculate suggested nutritional values and create model
+        double cal_mult;
+        int calc_cal, calc_sugar, calc_carb, calc_fat, calc_pro;
+        if(c_exercise == 0){
+            cal_mult = 0;
+        }
+        else if(c_exercise == 1){
+            cal_mult = 1.375;
+        }
+        else if(c_exercise == 2){
+            cal_mult = 1.55;
+        }
+        else{
+            cal_mult = 1.725;
+        }
+
+        //male cal suggest
+        if(c_gender == 1){
+            calc_cal = (int)((66 + (6.3 * c_weight) + (12.9 * c_height) - (6.8 * c_age)) * cal_mult);
+            calc_sugar = 150;
+        }
+        //female cal suggest
+        else{
+            calc_cal = (int)((655 + (4.3 * c_weight) + (4.7 * c_height) - (4.7 * c_age)) * cal_mult);
+            calc_sugar = 100;
+        }
+
+        //calculate suggested nutritional values
+        calc_carb = (int)(.65 * calc_cal);
+        calc_fat = (int)(.35 * calc_cal);
+        calc_pro = calc_fat;
+
+        System.out.println("cal: "+calc_cal+", sugar: "+calc_sugar+", carb: "+calc_carb+", fat: "+calc_fat+", pro: "+calc_pro);
 
         int incase[];
         incase = new int[5];
-        incase[0] = calories;
-        incase[1] = sugar;
-        incase[2] = fat;
-        incase[3] = carb;
-        incase[4] = pro;
+        incase[0] = calc_cal;
+        incase[1] = calc_sugar;
+        incase[2] = calc_fat;
+        incase[3] = calc_carb;
+        incase[4] = calc_pro;
 
+        //current
         c_calories = total_calories;
         c_sugar = total_sugar;
         c_fat = total_lipids;
@@ -81,18 +120,18 @@ public class SuggestActivity extends AppCompatActivity {
         c_pro = total_protein;
 
         //Figuring out how many of each category the user needs.
-        n_calories = calories - c_calories;
-        n_sugar = sugar - c_sugar;
-        n_fat = fat - c_fat;
-        n_carb = carb - c_carb;
-        n_pro = pro - c_pro;
+        n_calories = calc_cal - c_calories;
+        n_sugar = calc_sugar - c_sugar;
+        n_fat = calc_fat - c_fat;
+        n_carb = calc_carb - c_carb;
+        n_pro = calc_pro - c_pro;
 
         //Figuring out how many of each category the user needs.
-        p_calories =  1 - (c_calories / calories);
-        p_sugar =  1 - (c_sugar / sugar);
-        p_fat = 1 - (c_fat / fat);
-        p_carb = 1 - (c_carb / carb);
-        p_pro = 1 - (c_pro / pro);
+        p_calories =  1 - (c_calories / calc_cal);
+        p_sugar =  1 - (c_sugar / calc_sugar);
+        p_fat = 1 - (c_fat / calc_fat);
+        p_carb = 1 - (c_carb / calc_carb);
+        p_pro = 1 - (c_pro / calc_pro);
 
         double holder[];
         holder = new double[5];
@@ -101,8 +140,6 @@ public class SuggestActivity extends AppCompatActivity {
         holder[2] = p_fat;
         holder[3] = p_carb;
         holder[4] = p_pro;
-
-
 
         double needed[];
         needed = new double[5];
@@ -131,9 +168,9 @@ public class SuggestActivity extends AppCompatActivity {
             places[4-greater] = i;
         }
 
-        result1 = "hold";
-        result2 = "hold2";
-        result3 = "hold3";
+        result1 = "Value met";
+        result2 = "Value met";
+        result3 = "Value met";
 
         double score1 = 0, score2 = 0, score3 = 0, t_score = 0, multiplyer = 0;
 

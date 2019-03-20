@@ -85,6 +85,15 @@
 
         </RadioGroup>
 
+        <EditText
+            android:id="@+id/textEntryW2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Goal Weight in Pounds"
+            android:inputType="number"
+            android:textColorHint="@android:color/background_light" />
+
         <TextView
             android:id="@+id/spacer"
             android:layout_width="match_parent"

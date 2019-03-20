@@ -12,6 +12,9 @@ import java.io.PrintWriter;
 
 public class ProfileActivity extends AppCompatActivity {
 
+    public static int initial_weight;
+    public static int goal_weight = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,16 +30,21 @@ public class ProfileActivity extends AppCompatActivity {
     //level of exercise: none(0), light(1), moderate(2), heavy(3)
     public void save_profile(View view) {
         int male = 1, exercise_level = 0;
-        String height, weight, age;
+        String height, weight, age, goal;
 
         EditText height_entry = this.findViewById(R.id.textEntryH);
         height = height_entry.getText().toString();
 
         EditText weight_entry = this.findViewById(R.id.textEntryW);
         weight = weight_entry.getText().toString();
+        initial_weight = Integer.parseInt(weight);
 
         EditText age_entry = this.findViewById(R.id.ageEntry);
         age = age_entry.getText().toString();
+
+        EditText goal_entry = this.findViewById(R.id.textEntryW2);
+        goal = goal_entry.getText().toString();
+        goal_weight = Integer.parseInt(goal);
 
         RadioGroup gender_group = this.findViewById(R.id.gender_group);
         int selected_gender = gender_group.getCheckedRadioButtonId();
@@ -61,6 +69,7 @@ public class ProfileActivity extends AppCompatActivity {
             out.println(age);
             out.println(male);
             out.println(exercise_level);
+            out.println(goal);
             out.close();
         }
         catch (Exception e)
