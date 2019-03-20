@@ -21,6 +21,12 @@ public class FoodDatabase {
         FoodItem vanilla_ice_cream = new FoodItem("VANILLA ICE CREAM", 196.0, 31.63, 23.39, 5.83, 5.09);
         FoodItem chicken_nuggets = new FoodItem("CHICKEN NUGGETS", 222.0, 9.73, 0.05, 15.33, 11.19);
         FoodItem hotcakes = new FoodItem("HOTCAKES", 601.0, 101.84, 45.48, 17.81, 8.95);
+        FoodItem apple = new FoodItem("APPLE", 62.0, 14.82, 10.94, 0.16, 0.31);
+        FoodItem banana = new FoodItem("BANANA", 200.0, 51.39, 27.52, 0.74, 2.45);
+        FoodItem cherries = new FoodItem("CHERRIES", 114.0, 29.16, 25.44, 0.32, 1.91);
+        FoodItem mango = new FoodItem("MANGO", 99.0, 24.72, 22.54, 0.63, 1.35);
+        FoodItem melon = new FoodItem("MELON", 60.0, 14.44, 13.91, 0.34, 1.49);
+
         fdb.add(chicken_sandwich);
         fdb.add(cheese_pizza_slice);
         fdb.add(cheeseburger);
@@ -31,6 +37,12 @@ public class FoodDatabase {
         fdb.add(vanilla_ice_cream);
         fdb.add(chicken_nuggets);
         fdb.add(hotcakes);
+        fdb.add(apple);
+        fdb.add(banana);
+        fdb.add(cherries);
+        fdb.add(mango);
+        fdb.add(melon);
+
     }
 
     public FoodItem getFoodInfo(String f_name){
