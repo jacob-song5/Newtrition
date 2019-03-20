@@ -24,10 +24,11 @@ public class ProfileActivity extends AppCompatActivity {
     //Action behind the calculate button. Extracts all data from fields.
     //Writes data to file 'profile_data' in internal storage in format:
     //height in inches
-    //weight in inches
+    //weight in pounds
     //age in years
     //gender as female(0) or male(1)
     //level of exercise: none(0), light(1), moderate(2), heavy(3)
+    //goal weight in pounds
     public void save_profile(View view) {
         int male = 1, exercise_level = 0;
         String height, weight, age, goal;
