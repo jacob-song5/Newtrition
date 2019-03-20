@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
     {
         if (weight != "") {
             int selected = r.getCheckedRadioButtonId();
-            System.out.println("selected: "+selected);
+            System.out.println("selected value for exercise: "+selected);
             try {
                 File f = new File(getFilesDir(), "profile_data");
                 Scanner in = new Scanner(f);
