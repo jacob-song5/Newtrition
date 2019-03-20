@@ -124,12 +124,13 @@ public class MainActivity extends AppCompatActivity {
             try {
                 File f = new File(getFilesDir(), "profile_data");
                 Scanner in = new Scanner(f);
-                String height, age, gender, exercise_level;
+                String height, age, gender, exercise_level, goal;
                 height = in.nextLine();
                 in.nextLine();
                 age = in.nextLine();
                 gender = in.nextLine();
                 exercise_level = in.nextLine();
+                goal = in.nextLine();
                 in.close();
 
                 PrintWriter out = new PrintWriter(f);
@@ -143,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                     out.println(exercise_level);
 
+                out.println(goal);
                 out.close();
             } catch (NoSuchElementException n) {
             } catch (Exception e) {
